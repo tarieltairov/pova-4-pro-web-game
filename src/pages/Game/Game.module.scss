@@ -1,0 +1,107 @@
+.game_page {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../assets/images/backgrounds/game_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    cursor: url('../../assets/images/aims/003--2.png'), auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .start_btn{
+        width: 150px;
+        padding: 15px 0;
+        background-color: orange;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: 500;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(250, 177, 42);
+        }
+    }
+
+    .target {
+        width: 100px;
+        height: 150px;
+        margin-left: 10px;
+        transform-origin: 50% bottom;
+    }
+
+    .enemy_target {
+        width: 100px;
+        height: 150px;
+        cursor: url('../../assets/images/aims/002--1.png'), auto;
+        margin-left: 10px;
+        transform-origin: 50% bottom;
+    }
+
+    .first {
+        position: absolute;
+        bottom: 100px;
+        left: 0;
+    }
+
+    .second{
+        position: absolute;
+        bottom: 270px;
+        right: 500px;
+    }
+
+    .third{
+        position: absolute;
+        bottom: 240px;
+        right: 135px;
+    }
+
+    .seventh{
+        position: absolute;
+        bottom: 50px;
+        right: 270px;
+    }
+
+    .sixth{
+        position: absolute;
+        bottom: 240px;
+        left: 285px;
+    }
+
+    .user{
+        position: absolute;
+        left: 0;
+        top: 80px;
+        width: 100px;
+        padding: 15px 0;
+        background-color: orange;
+        border-radius: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+
+    .glasses{
+        position: absolute;
+        right: 0;
+        top: 80px;
+        width: 100px;
+        padding: 15px 0;
+        background-color: orange;
+        border-radius: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .first_die, .second_die, .third_die, .fourth_die, .fifth_die, .sixth_die, .seventh_die{
+        animation: died 0.5s forwards;
+    }
+
+    @keyframes died {
+        100% {
+            transform:rotateX(90deg);
+        }
+    }
+}

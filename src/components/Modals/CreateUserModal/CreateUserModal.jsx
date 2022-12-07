@@ -7,7 +7,7 @@ const CreateUserModal = ({setOpenCreateModal}) => {
     const dispatch = useDispatch();
     const [userName, setUserName] = useState('');
 
-    const createAndStart = (e)=>{
+    const createAndStart = ()=>{
         dispatch(createUser(userName));
         dispatch(startedGame());
         setUserName('');

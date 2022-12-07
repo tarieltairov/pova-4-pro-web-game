@@ -1,0 +1,84 @@
+.modal {
+    position: absolute;
+    width: 400px;
+    height: auto;
+    border: 2px solid rgba(8, 111, 230, 0.39);
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(67, 63, 60, 0.4);
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    cursor: auto;
+
+    p {
+        color: white;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: white;
+        font-size: 25px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .rating_label {
+        color: white;
+        margin-bottom: 5px;
+    }
+
+    .rating_block {
+        width: 100%;
+        height: 300px;
+        background-color: rgba(248, 246, 245, 1);
+        margin-bottom: 20px;
+        border-radius: 5px;
+        padding: 15px;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        .user_rating {
+            margin-bottom: 15px;
+            color: rgba(8, 111, 230);
+        }
+    }
+
+
+
+    .btns_block {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 150px;
+            padding: 15px 0;
+            border-radius: 5px;
+            font-size: 20px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        .redirect_btn {
+            background-color: rgba(8, 111, 230);
+
+            &:hover {
+                background-color: rgb(50, 143, 250);
+            }
+        }
+
+        .close_btn {
+            background-color: rgb(87, 87, 87);
+
+            &:hover {
+                background-color: rgb(104, 104, 104);
+            }
+        }
+    }
+
+}

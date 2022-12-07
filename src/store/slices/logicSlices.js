@@ -68,17 +68,21 @@ const originTargets = [
 ];
 
 const initialState = {
-  shootCount: 0,
+  shootCount: 100,
   rating: [],
   game: false,
   user: null,
   targets: [],
+  gameTime: false
 };
 
 const logicSlice = createSlice({
   name: "logic",
   initialState,
   reducers: {
+    timesUp: (state)=>{
+      state.gameTime = false
+    },
     emptyFire: (state, action) => {
       state.shootCount = state.shootCount + action.payload;
     },
@@ -87,6 +91,7 @@ const logicSlice = createSlice({
     },
     startedGame: (state) => {
       state.game = true;
+      state.gameTime = true
       state.targets = [...originTargets]
     },
     createUser: (state, action) => {
@@ -111,5 +116,6 @@ export const {
   createUser,
   removeTarget,
   endGame,
+  timesUp
 } = logicSlice.actions;
 export default logicSlice.reducer;

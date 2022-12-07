@@ -12,11 +12,11 @@
     justify-content: center;
     .start_btn{
         width: 150px;
-        padding: 15px 0;
+        padding: 10px 0;
         background-color: orange;
         border-radius: 5px;
         font-size: 20px;
-        font-weight: 500;
+        font-weight: 600;
         text-align: center;
         border: none;
         cursor: pointer;
@@ -29,7 +29,7 @@
         width: 100px;
         height: 150px;
         margin-left: 10px;
-        transform-origin: 50% bottom;
+        animation: appearancee 2s forwards;
     }
 
     .enemy_target {
@@ -37,8 +37,9 @@
         height: 150px;
         cursor: url('../../assets/images/aims/002--1.png'), auto;
         margin-left: 10px;
-        transform-origin: 50% bottom;
+        animation: appearancee 2s forwards;
     }
+    
 
     .first {
         position: absolute;
@@ -74,8 +75,18 @@
         position: absolute;
         left: 0;
         top: 80px;
-        width: 100px;
-        padding: 15px 0;
+        padding: 15px 10px;
+        background-color: orange;
+        border-radius: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .game_time{
+        position: absolute;
+        left: 0;
+        top: 140px;
+        padding: 15px 10px;
         background-color: orange;
         border-radius: 5px;
         font-size: 18px;
@@ -97,11 +108,22 @@
 
     .first_die, .second_die, .third_die, .fourth_die, .fifth_die, .sixth_die, .seventh_die{
         animation: died 0.5s forwards;
+        transform-origin: 50% bottom;
     }
+
 
     @keyframes died {
         100% {
             transform:rotateX(90deg);
+        }
+    }
+
+    @keyframes appearancee {
+        0%{
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 }

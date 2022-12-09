@@ -18,7 +18,7 @@ const ResultModal = ({ setOpenResModal, setMakeDied }) => {
 
     return (
         <div className={cl.modal}>
-            {loading && <Loader />}
+            {/* {loading && <Loader />} */}
 
             <h4>Игра завершена!</h4>
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { endGame } from '../store/slices/logicSlices';
 import cl from '../pages/Game/Game.module.scss';
 
-const CountDown = ({ hours = 0, minutes = 3, seconds = 0}) => {
+const CountDown = ({ hours = 2, minutes = 3, seconds = 0}) => {
     const dispatch = useDispatch();
     const [[h, m, s], setTime] = useState([hours, minutes, seconds]);
 

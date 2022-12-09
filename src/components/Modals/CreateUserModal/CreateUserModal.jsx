@@ -20,7 +20,7 @@ const CreateUserModal = ({ setOpenCreateModal }) => {
     return (
         <div className={cl.modal}>
             <h4>Создание нового игрока</h4>
-            {loading && <Loader />}
+            {/* {loading && <Loader />} */}
 
             <input type="text" placeholder='Введите ваше имя' onChange={(e) => setUserName(e.target.value)} />
 

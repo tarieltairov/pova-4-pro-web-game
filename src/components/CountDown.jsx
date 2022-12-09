@@ -1,57 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { timesUp } from '../store/slices/logicSlices';
+import { endGame } from '../store/slices/logicSlices';
+import cl from '../pages/Game/Game.module.scss';
 
-const CountDown = ({ hours = 0, minutes = 0, seconds = 0, cl}) => {
+const CountDown = ({ hours = 0, minutes = 3, seconds = 0}) => {
     const dispatch = useDispatch();
-    const [paused, setPaused] = useState(false);
-    const [over, setOver] = useState(false);
     const [[h, m, s], setTime] = useState([hours, minutes, seconds]);
 
-    useEffect(()=>{
-        if(h === 0 && m === 0 && s === 0){
-            dispatch(timesUp())
-        }
-    },[h,m,s])
-
-    const tick = () => {
-        if (paused || over) return;
-
+    useEffect(() => {
         if (h === 0 && m === 0 && s === 0) {
-            setOver(true);
-        } else if (m === 0 && s === 0) {
-            setTime([h - 1, 59, 59]);
-        } else if (s == 0) {
-            setTime([h, m - 1, 59]);
-        } else {
-            setTime([h, m, s - 1]);
+            dispatch(endGame())
         }
-    };
-
-    // const reset = () => {
-    //     setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
-    //     setPaused(false);
-    //     setOver(false);
-    // };
+    }, [h, m, s, dispatch])
 
     useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
-    });
+    }, [dispatch]);
+
+    const tick = () => {
+        setTime((prev) => {
+            if (prev[1] === 0 && prev[2] === 0) {
+                return [prev[0] - 1, 59, 59];
+            } else if (prev[2] === 0) {
+                return [prev[0], prev[1] - 1, 59];
+            } else {
+                return [prev[0], prev[1], prev[2] - 1];
+            }
+        });
+    };
+
 
     return (
-        // <div>
-        //     <p>{`${h.toString().padStart(2, '0')}:${m
-        //         .toString()
-        //         .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}</p>
-        //     <div>{over ? "Time's up!" : ''}</div>
-        //     <button onClick={() => setPaused(!paused)}>
-        //         {paused ? 'Resume' : 'Pause'}
-        //     </button>
-        //     <button onClick={() => reset()}>Restart</button>
-        // </div>
         <div className={cl.game_time}>
-            До окончания игры: 
+            До окончания игры:
             {`  ${h.toString().padStart(2, '0')}:${m
                 .toString()
                 .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}

@@ -1,40 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { allyFire } from '../../../store/slices/logicSlices';
+import { closedResModal } from '../../../store/slices/logicSlices';
+import Loader from '../../Loader/Loader';
 import cl from './ResultModal.module.scss';
 
-const ResultModal = ({ setOpenResModal }) => {
+const ResultModal = ({ setOpenResModal, setMakeDied }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { shootCount } = useSelector(state => state.logic);
+    const { shootCount, rating, loading, user} = useSelector(state => state.logic);
 
     const closeModal = () => {
-        // dispatch(allyFire(shootCount));   потом раскоментить
-        
-        setOpenResModal(false)
+        dispatch(closedResModal());
+        setOpenResModal(false);
+        setMakeDied(null);
     };
 
     return (
         <div className={cl.modal}>
-            <h4>Ваше достижение</h4>
+            {loading && <Loader />}
+
+            <h4>Игра завершена!</h4>
 
             <p>Ваш счёт: {shootCount} баллов</p>
             <p className={cl.rating_label}>Общий рейтинг</p>
 
             <div className={cl.rating_block}>
-                <div className={cl.user_rating}>1. userName</div>
-                <div className={cl.user_rating}>2. userName</div>
-                <div className={cl.user_rating}>3. userName</div>
-                <div className={cl.user_rating}>4. userName</div>
-                
-                <div className={cl.user_rating}>2. userName</div>
-                <div className={cl.user_rating}>3. userName</div>
-                <div className={cl.user_rating}>4. userName</div>
-                
-                <div className={cl.user_rating}>2. userName</div>
-                <div className={cl.user_rating}>3. userName</div>
-                <div className={cl.user_rating}>4. userName</div>
+                {rating?.map((item, index) => (
+
+                    <div className={item.id===user.id ? cl.current_user_rating : cl.user_rating} key={item.id}>
+                        <p>{index + 1}.  {item.name}</p>
+                        <p>{item.record[0]?.record}</p>
+                    </div>
+                ))}
             </div>
 
             <div className={cl.btns_block}>

@@ -1,88 +1,129 @@
 import { createSlice } from "@reduxjs/toolkit";
 import cl from "../../pages/Game/Game.module.scss";
-import first from "../../assets/images/targets/target_1.jpg";
-import second from "../../assets/images/targets/target_2.jpg";
-import third from "../../assets/images/targets/target_3.jpg";
-import fourth from "../../assets/images/targets/target_4.jpg";
-import fifth from "../../assets/images/targets/target_5.jpg";
-import sixth from "../../assets/images/targets/target_6.jpg";
-import seventh from "../../assets/images/targets/target_7.jpg";
+import batman from "../../assets/images2/targets/batman.png";
+import ironman from "../../assets/images2/targets/ironman.png";
+import mc from "../../assets/images2/targets/MC.png";
+import spiderman from "../../assets/images2/targets/spiderman.png";
+import superman from "../../assets/images2/targets/superman.png";
+import wolverine from "../../assets/images2/targets/wolverine.png";
+import { createUser, getRating, sendRecord } from "../actions/logicActions";
+import { randomGlass } from "../../utils";
+
 
 const originTargets = [
   {
     target_id: 1,
-    url: first,
+    url: batman,
     role: "black",
     className: cl.first,
     die: cl.first_die,
-    glass: 10,
+    glass: randomGlass(),
   },
   {
     target_id: 2,
-    url: second,
+    url: mc,
     role: "black",
     className: cl.second,
     die: cl.second_die,
-    glass: 8,
+    glass: randomGlass(),
   },
   {
     target_id: 3,
-    url: third,
+    url: wolverine,
     role: "black",
     className: cl.third,
     die: cl.third_die,
-    glass: 5,
-  },
-  {
-    target_id: 4,
-    url: fourth,
-    role: "black",
-    die: cl.fourth_die,
-    className: cl.fourth,
-    glass: 7,
+    glass: randomGlass(),
   },
   {
     target_id: 5,
-    url: fifth,
+    url: ironman,
     role: "white",
     die: cl.fifth_die,
     className: cl.fifth,
-    glass: 8,
+    glass: randomGlass(),
   },
   {
     target_id: 6,
-    url: sixth,
+    url: spiderman,
     role: "white",
     className: cl.sixth,
     die: cl.sixth_die,
-    glass: 10,
+    glass: randomGlass(),
   },
   {
     target_id: 7,
-    url: seventh,
+    url: superman,
     role: "white",
     className: cl.seventh,
     die: cl.seventh_die,
-    glass: 5,
+    glass: randomGlass(),
   },
+  
+
+  // {
+  //   target_id: 8,
+  //   url: batman,
+  //   role: "black",
+  //   className: cl.first,
+  //   die: cl.first_die,
+  //   glass: randomGlass(),
+  // },
+  // {
+  //   target_id: 9,
+  //   url: mc,
+  //   role: "black",
+  //   className: cl.second,
+  //   die: cl.second_die,
+  //   glass: randomGlass(),
+  // },
+  // {
+  //   target_id: 10,
+  //   url: wolverine,
+  //   role: "black",
+  //   className: cl.third,
+  //   die: cl.third_die,
+  //   glass: randomGlass(),
+  // },
+  // {
+  //   target_id: 11,
+  //   url: ironman,
+  //   role: "white",
+  //   die: cl.fifth_die,
+  //   className: cl.fifth,
+  //   glass: randomGlass(),
+  // },
+  // {
+  //   target_id: 12,
+  //   url: spiderman,
+  //   role: "white",
+  //   className: cl.sixth,
+  //   die: cl.sixth_die,
+  //   glass: randomGlass(),
+  // },
+  // {
+  //   target_id: 13,
+  //   url: superman,
+  //   role: "white",
+  //   className: cl.seventh,
+  //   die: cl.seventh_die,
+  //   glass: randomGlass(),
+  // },
 ];
 
 const initialState = {
+  loading: false,
   shootCount: 100,
   rating: [],
-  game: false,
-  user: null,
-  targets: [],
-  gameTime: false
+  game: "notStarted",
+  user: {},
+  targets: [...originTargets],
 };
 
 const logicSlice = createSlice({
   name: "logic",
   initialState,
   reducers: {
-    timesUp: (state)=>{
-      state.gameTime = false
-    },
     emptyFire: (state, action) => {
       state.shootCount = state.shootCount + action.payload;
     },
@@ -90,12 +131,7 @@ const logicSlice = createSlice({
       state.shootCount = state.shootCount - action.payload;
     },
     startedGame: (state) => {
-      state.game = true;
-      state.gameTime = true
-      state.targets = [...originTargets]
-    },
-    createUser: (state, action) => {
-      state.user = action.payload;
+      state.game = "started";
     },
     removeTarget: (state, action) => {
       state.targets = state.targets.filter(
@@ -103,19 +139,54 @@ const logicSlice = createSlice({
       );
     },
     endGame: (state) => {
-      state.game = false;
+      state.game = "completed";
+    },
+    closedResModal: (state) => {
+      state.game = "notStarted";
+      state.shootCount = 100;
+      state.targets = [...originTargets];
+      state.user = {}
     },
   },
-  extraReducers: {},
+  extraReducers: (builder)=>{
+    builder.addCase(createUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload
+    });
+    builder.addCase(createUser.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(getRating.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getRating.fulfilled, (state, action) => {
+      state.loading = false;
+      state.rating = action.payload
+    });
+    builder.addCase(getRating.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(sendRecord.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(sendRecord.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(sendRecord.rejected, (state) => {
+      state.loading = false;
+    });
+  },
 });
 
 export const {
   emptyFire,
   allyFire,
   startedGame,
-  createUser,
   removeTarget,
   endGame,
-  timesUp
+  closedResModal,
 } = logicSlice.actions;
 export default logicSlice.reducer;

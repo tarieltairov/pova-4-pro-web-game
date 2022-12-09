@@ -8,22 +8,26 @@ import { allyFire, emptyFire, endGame, removeTarget } from '../../store/slices/l
 import CreateUserModal from '../../components/Modals/CreateUserModal/CreateUserModal';
 import ResultModal from '../../components/Modals/ResultModal/ResultModal';
 import CountDown from '../../components/CountDown';
-
+import { getRating, sendRecord } from '../../store/actions/logicActions';
 
 const Game = () => {
     const dispatch = useDispatch();
-    const { shootCount, game, user, targets, gameTime } = useSelector(state => state.logic);
+    const { shootCount, game, user, targets } = useSelector(state => state.logic);
     const [makeDied, setMakeDied] = useState(null);
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const [openResModal, setOpenResModal] = useState(false);
 
     useEffect(() => {
-        if (targets.length === 0 || !gameTime) {
+        if (targets.length === 0) {
+            dispatch(sendRecord({ user: user.id, record: shootCount })).then(() => {
+                dispatch(getRating())
+            })
             dispatch(endGame());
-            setMakeDied(null);
-            setOpenResModal(true)
+        }
+        if (game === 'completed') {
+            setOpenResModal(true);
         };
-    }, [targets, gameTime]);
+    }, [targets, game, dispatch]);
 
     const playFireSound = () => {
         const audio = new Audio(fireSound);
@@ -35,7 +39,7 @@ const Game = () => {
         audio.play();
     };
 
-    const short = async (role, count, id) => {
+    const short = (role, count, id) => {
         if (role === "black") {
             dispatch(emptyFire(count));
         } else {
@@ -47,39 +51,42 @@ const Game = () => {
             dispatch(removeTarget(id));
         }, 500);
     };
-
+    console.log('targets', targets);
 
     return (
-        <div className={cl.game_page} onClick={() => game && playFireSound()}>
+        <>
+            <div className={cl.game_page} >
+                <div className={cl.game_page_phone} onClick={() => game === "started" && playFireSound()}>
 
-            {!game && <button className={cl.start_btn} onClick={() => setOpenCreateModal(true)}>Начать игру</button>}
+               
+                {game === 'notStarted' && <button className={cl.start_btn} onClick={() => setOpenCreateModal(true)}>Начать игру</button>}
 
-            {game &&
-                <>
-                    <div className={cl.glasses}>Очки: {shootCount}</div>
-                    <div className={cl.user}>Вы: {user || 'user'}</div>
-                    <CountDown minutes={3} cl={cl}/>
+                {game === "started" &&
+                    <>
+                        <div className={cl.glasses}>Очки: {shootCount}</div>
+                        <div className={cl.user}>Вы: {user.name || 'user'}</div>
+                        <CountDown />
+                        {targets?.map(item => (
+                            <img
+                                key={item?.target_id}
+                                src={item.url}
+                                className={classNames(item.role === 'black' ? cl.enemy_target : cl.target,
+                                    item.className, item.target_id === makeDied && item.die)}
+                                id={item.className}
+                                onClick={() => short(item.role, item.glass, item.target_id)}
+                                alt="target"
+                            />
+                        ))}
+                    </>
+                }
 
-                    {targets?.map(item => (
-                        <img
-                            key={item?.target_id}
-                            src={item.url}
-                            className={classNames(item.role === 'black' ? cl.enemy_target : cl.target,
-                                item.className, item.target_id === makeDied && item.die)}
-                            id={item.className}
-                            onClick={() => short(item.role, item.glass, item.target_id).then(() => {
-                                console.log(targets.length)
-                            })}
-                        />
-                    ))}
-                </>
-            }
-            
+                {openCreateModal && <CreateUserModal setOpenCreateModal={setOpenCreateModal} />}
+                {openResModal && <ResultModal setOpenResModal={setOpenResModal} setMakeDied={setMakeDied} />}
 
-            {openCreateModal && <CreateUserModal setOpenCreateModal={setOpenCreateModal} />}
-            {openResModal && <ResultModal setOpenResModal={setOpenResModal} />}
-
-        </div>
+                {/* <div className={cl.for_frame} onClick={()=>console.log('re')}></div> */}
+                </div>
+            </div>
+        </>
     );
 };
 

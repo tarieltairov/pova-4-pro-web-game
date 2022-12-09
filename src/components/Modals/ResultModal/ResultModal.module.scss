@@ -40,7 +40,27 @@
         overflow-y: scroll;
         .user_rating {
             margin-bottom: 15px;
-            color: rgba(8, 111, 230);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                color: rgba(8, 111, 230);
+                margin: 0;
+            }
+        }
+
+        .current_user_rating{
+            margin-bottom: 15px;
+            background-color: rgb(248, 84, 84);
+            border-radius: 5px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                color: white;
+                margin: 0;
+            }
         }
     }
 

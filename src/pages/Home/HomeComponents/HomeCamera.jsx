@@ -1,5 +1,4 @@
 import React from 'react';
-import cl from '../Home.module.scss'
 import background from '../../../assets/images/phone.jpg'
 const HomeCamera = () => {
     return (

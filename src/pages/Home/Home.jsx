@@ -2,7 +2,6 @@ import React from 'react';
 import cl from './Home.module.scss'
 import HomeMain from "./HomeComponents/HomeMain";
 import HomeTable from "./HomeComponents/HomeTable";
-import HomeVideo from "./HomeComponents/HomeVideo";
 import HomeBattery from "./HomeComponents/HomeBattery";
 import HomeCamera from "./HomeComponents/HomeCamera";
 import HomeCameraCarusel from "./HomeComponents/HomeCameraCarusel";

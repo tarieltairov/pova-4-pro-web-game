@@ -8,20 +8,24 @@ import cl from './CreateUserModal.module.scss';
 const CreateUserModal = ({ setOpenCreateModal }) => {
     const dispatch = useDispatch();
     const [userName, setUserName] = useState('');
-    const { loading } = useSelector((state) => state.logic)
+    const { loading } = useSelector((state) => state.logic);
 
     const createAndStart = () => {
-        dispatch(createUser(userName));
-        dispatch(startedGame());
-        setUserName('');
-        setOpenCreateModal(false);
+        if (userName.length === 0) {
+            alert('Введите имя')
+        } else {
+            dispatch(createUser(userName)).then(() => {
+                dispatch(startedGame());
+                setOpenCreateModal(false);
+                setUserName('');
+            })
+        }
     };
 
     return (
         <div className={cl.modal}>
             <h4>Создание нового игрока</h4>
-            {/* {loading && <Loader />} */}
-
+            {loading && <Loader />}
             <input type="text" placeholder='Введите ваше имя' onChange={(e) => setUserName(e.target.value)} />
 
             <button onClick={createAndStart}>Начать</button>

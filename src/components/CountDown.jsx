@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { endGame } from '../store/slices/logicSlices';
 import cl from '../pages/Game/Game.module.scss';
 
-const CountDown = ({ hours = 2, minutes = 3, seconds = 0}) => {
+const CountDown = ({ hours = 0 , minutes = 3, seconds = 0}) => {
     const dispatch = useDispatch();
     const [[h, m, s], setTime] = useState([hours, minutes, seconds]);
 
@@ -11,7 +11,7 @@ const CountDown = ({ hours = 2, minutes = 3, seconds = 0}) => {
         if (h === 0 && m === 0 && s === 0) {
             dispatch(endGame())
         }
-    }, [h, m, s, dispatch])
+    }, [h, m, s, dispatch]);
 
     useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);

@@ -1,16 +1,18 @@
 import React from 'react';
 import cl from './Prize.module.scss';
-import bg from '../../assets/videos/prize_2.mp4' 
+// import bg from '../../assets/videos/prize_2.mp4'
 
 const Prize = () => {
     return (
         <div className={cl.prize_page}>
-            <video 
+            {/* <video 
             src={bg} 
             autoPlay
             loop
             muted
-            ></video>
+            ></video> */}
+
+            <h2 style={{textAlign: 'center'}}>Cтраница в разработке...</h2>
         </div>
     );
 };

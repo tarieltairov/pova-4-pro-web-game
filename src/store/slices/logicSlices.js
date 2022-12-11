@@ -85,16 +85,8 @@ const originTargets = [
     die: cl.tenth_die,
     glass: randomGlass(),
   },
-  // {
-  //   target_id: 11,
-  //   url: ironman,
-  //   role: "white",
-  //   die: cl.eleventh_die,
-  //   className: cl.eleventh,
-  //   glass: randomGlass(),
-  // },
   {
-    target_id: 12,
+    target_id: 11,
     url: spiderman,
     role: "white",
     className: cl.twentyth,
@@ -102,7 +94,7 @@ const originTargets = [
     glass: randomGlass(),
   },
   {
-    target_id: 13,
+    target_id: 4,
     url: superman,
     role: "white",
     className: cl.thirtinth,

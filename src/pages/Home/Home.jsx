@@ -6,20 +6,25 @@ import HomeBattery from "./HomeComponents/HomeBattery";
 import HomeCamera from "./HomeComponents/HomeCamera";
 import HomeCameraCarusel from "./HomeComponents/HomeCameraCarusel";
 import HomeFooter from "./HomeComponents/HomeFooter";
+import HomeVideo from './HomeComponents/HomeVideo';
+import HomeSecBat from './HomeComponents/HomeSecBat';
+import HomeTerm from './HomeComponents/HomeTerm';
+import HomePhoneDesign from './HomeComponents/HomePhoneDesign';
 
 const Home = () => {
     return (
-            <div>
-            <div className={cl.background}>
-                <HomeMain/>
-                <HomeTable/>
-                {/*<HomeVideo/>*/}
-                <HomeBattery/>
-                <HomeCamera/>
-                <HomeCameraCarusel/>
-                <HomeFooter/>
-            </div>
-            </div>
+        <div className={cl.background}>
+            <HomeVideo />
+            <HomeMain />
+            <HomeTable />
+            <HomeBattery />
+            <HomePhoneDesign />
+            <HomeCamera />
+            <HomeTerm />
+            <HomeCameraCarusel />
+            <HomeSecBat />
+            <HomeFooter />
+        </div>
     );
 };
 

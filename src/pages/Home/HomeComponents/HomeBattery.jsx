@@ -18,8 +18,8 @@ import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 const HomeBattery = () => {
 
     return (
-            <div >
-                <h2 style={{color:"white",textAlign:"center", margin:25}}>Преимущества</h2>
+            <div style={{marginBottom: '200px', marginTop: '200px'}}>
+                <h2 style={{color:"white",textAlign:"center", margin:100}}>Преимущества</h2>
                 <Swiper
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={10}

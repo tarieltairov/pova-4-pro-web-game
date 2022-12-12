@@ -9,7 +9,7 @@ const CountDown = ({ hours = 0 , minutes = 3, seconds = 0}) => {
 
     useEffect(() => {
         if (h === 0 && m === 0 && s === 0) {
-            dispatch(endGame())
+            dispatch(endGame());
         }
     }, [h, m, s, dispatch]);
 

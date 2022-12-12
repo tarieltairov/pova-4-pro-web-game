@@ -1,21 +1,26 @@
-.header_container{
+.header_container {
     width: 100%;
     background: rgba(67, 63, 60, 0.2);
     border-bottom: 1px solid rgba(8, 111, 230, 0.39);
-    padding: 0;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2;
     position: fixed;
-    nav{
+
+    nav {
         width: 50%;
         height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .nav_item{
+
+        @media (max-width: 500px) {
+            width: 90%;
+        }
+
+        .nav_item {
             width: 120px;
             height: 100%;
             display: flex;
@@ -24,11 +29,16 @@
             padding: 0 5px;
             color: white;
             cursor: pointer;
-            &:hover{
-                background-color: rgba(67, 63, 60, 0.4);;
+            @media (max-width: 500px) {
+                width: 90px;
+                font-size: 18px;
+            }
+            &:hover {
+                background-color: rgba(67, 63, 60, 0.4);
             }
         }
-        .active_item{
+
+        .active_item {
             width: 120px;
             height: 100%;
             background: #fff;
@@ -38,7 +48,11 @@
             padding: 0 5px;
             cursor: pointer;
             border-bottom: rgba(8, 111, 230, 0.39);
+            @media (max-width: 500px) {
+                width: 90px;
+                font-size: 18px;
+            }
         }
-       
+
     }
 }

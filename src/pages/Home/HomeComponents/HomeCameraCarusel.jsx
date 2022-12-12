@@ -19,27 +19,25 @@ const HomeCameraCarusel = () => {
                 navigation
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
             >
                 <SwiperSlide>
                     <div className={cl.battery}>
-                        <img className={cl.img__battery} src={povoPro} alt=""/>
+                        <img className={cl.img__battery} src={povoPro} alt="1"/>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className={cl.battery}>
-                        <img className={cl.img__battery} src={povoPro2} alt=""/>
+                        <img className={cl.img__battery} src={povoPro2} alt="2"/>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className={cl.battery}>
-                        <img className={cl.img__battery} src={povoPro3} alt=""/>
+                        <img className={cl.img__battery} src={povoPro3} alt="3"/>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className={cl.battery}>
-                        <img className={cl.img__battery} src={povoPro4} alt=""/>
+                        <img className={cl.img__battery} src={povoPro4} alt="4"/>
                     </div>
                 </SwiperSlide>
 

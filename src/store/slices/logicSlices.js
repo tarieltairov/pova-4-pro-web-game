@@ -139,6 +139,9 @@ const logicSlice = createSlice({
       state.targets = [...originTargets];
       state.user = {}
     },
+    replenishment:(state)=>{
+      state.targets = [...originTargets];
+    }
   },
   extraReducers: (builder)=>{
     builder.addCase(createUser.pending, (state) => {
@@ -180,5 +183,6 @@ export const {
   removeTarget,
   endGame,
   closedResModal,
+  replenishment
 } = logicSlice.actions;
 export default logicSlice.reducer;

@@ -18,8 +18,8 @@ import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 const HomeBattery = () => {
 
     return (
-            <div style={{marginBottom: '200px', marginTop: '200px'}}>
-                <h2 style={{color:"white",textAlign:"center", margin:100}}>Преимущества</h2>
+            <div className={cl.benefits_block}>
+                <h1 >Преимущества</h1>
                 <Swiper
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={10}
@@ -32,42 +32,42 @@ const HomeBattery = () => {
                 >
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={proz} alt=""/>
+                            <img className={cl.img__battery} src={proz} alt="first"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={ozy} alt=""/>
+                            <img className={cl.img__battery} src={ozy} alt="second"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={battery} alt=""/>
+                            <img className={cl.img__battery} src={battery} alt="third"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={gzz} alt=""/>
+                            <img className={cl.img__battery} src={gzz} alt="fourth"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={zvyk} alt=""/>
+                            <img className={cl.img__battery} src={zvyk} alt="fifth"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={vibro} alt=""/>
+                            <img className={cl.img__battery} src={vibro} alt="sixth"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={ohlaz} alt=""/>
+                            <img className={cl.img__battery} src={ohlaz} alt="seventh"/>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className={cl.battery}>
-                            <img className={cl.img__battery} src={steklo} alt=""/>
+                            <img className={cl.img__battery} src={steklo} alt="eighth"/>
                         </div>
                     </SwiperSlide>
                 </Swiper>

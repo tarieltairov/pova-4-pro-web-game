@@ -27,9 +27,9 @@ const ResultModal = ({ setOpenResModal, setMakeDied, setSequence, setOpenStartMo
             <p className={cl.rating_label}>Общий рейтинг</p>
 
             <div className={cl.rating_block}>
-                {rating?.sort((a, b) => b?.record - a?.record).map((item) => (
+                {rating?.map((item, index) => (
                     <div className={item.id === user.id ? cl.current_user_rating : cl.user_rating} key={item.id}>
-                        <p>{item.name}</p>
+                        <p>{index+1}  {item.name}</p>
                         <p>{item.record}</p>
                     </div>
                 ))}

@@ -5,20 +5,21 @@ import { startedGame } from '../../../store/slices/logicSlices';
 import Loader from '../../Loader/Loader';
 import cl from './CreateUserModal.module.scss';
 
-const CreateUserModal = ({ setOpenCreateModal }) => {
+const CreateUserModal = ({ setOpenCreateModal, setFakeUserName }) => {
     const dispatch = useDispatch();
     const [userName, setUserName] = useState('');
     const { loading } = useSelector((state) => state.logic);
 
     const createAndStart = () => {
         if (userName.length === 0) {
-            alert('Введите имя')
+            alert('Введите имя');
         } else {
             dispatch(createUser(userName)).then(() => {
+                setFakeUserName(userName);
                 dispatch(startedGame());
                 setOpenCreateModal(false);
                 setUserName('');
-            })
+            });
         }
     };
 

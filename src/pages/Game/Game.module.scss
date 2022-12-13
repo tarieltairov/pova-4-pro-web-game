@@ -157,16 +157,14 @@
         .game_time {
             width: 200px;
             position: absolute;
-            left: 0;
-            top: 140px;
+            left: 10%;
+            top: 20%;
             padding: 15px 10px;
             background-color: orange;
             border-radius: 5px;
             font-size: 18px;
             text-align: center;
-
-            // можно снова показать
-            display: none;
+            font-weight: 600;
         }
 
 
@@ -196,7 +194,7 @@
         .eleventh_die,
         .twentyth_die,
         .thirtinth_die {
-            animation: died 0.5s forwards;
+            animation: died 0.3s forwards;
             transform-origin: 50% bottom;
         }
 

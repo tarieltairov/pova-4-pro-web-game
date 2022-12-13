@@ -21,6 +21,7 @@ const Game = () => {
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const [openResModal, setOpenResModal] = useState(false);
     const [openStartModal, setOpenStartModal] = useState(true);
+    const [falkUserName, setFakeUserName] = useState('');
     const [sequence, setSequence] = useState(targets[Math.floor(Math.random() * targets.length)]?.target_id);
 
     // const items = [
@@ -104,7 +105,7 @@ const Game = () => {
         if (targets.length === 1) {
             setTimeout(() => {
                 dispatch(replenishment());
-            }, 500);
+            }, 300);
         }
         if (game === 'completed') {
             dispatch(sendRecord({ user: user.id, record: shootCount })).then(() => {
@@ -136,10 +137,8 @@ const Game = () => {
             dispatch(removeTarget(id));
             let filtered = targets.filter(item => item?.target_id !== id);
             setSequence(filtered[Math.floor(Math.random() * filtered.length)]?.target_id);
-        }, 500);
+        }, 300);
     };
-
-    console.log(targets);
 
     return (
         <div className={cl.game_page} onClick={() => game === "started" && playFireSound()}>
@@ -153,10 +152,10 @@ const Game = () => {
             {game === "started" &&
                 <>
                     <div className={cl.glasses}>Очки: {shootCount}</div>
-                    <div className={cl.user}>Вы: {user.name || 'user'}</div>
-                    <CountDown />
+                    <div className={cl.user}>Вы: {user.name || falkUserName || 'user'}</div>
 
-
+                    <CountDown minutes={3} />
+                    
                     {targets?.map(item => {
                         if (item?.target_id === sequence) {
                             return (
@@ -195,7 +194,11 @@ const Game = () => {
                 </>
             }
 
-            {openCreateModal && <CreateUserModal setOpenCreateModal={setOpenCreateModal} />}
+            {openCreateModal &&
+                <CreateUserModal
+                    setOpenCreateModal={setOpenCreateModal}
+                    setFakeUserName={setFakeUserName}
+                />}
             {openResModal &&
                 <ResultModal
                     setOpenResModal={setOpenResModal}

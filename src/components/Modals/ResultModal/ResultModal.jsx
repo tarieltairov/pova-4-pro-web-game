@@ -5,7 +5,7 @@ import { closedResModal } from '../../../store/slices/logicSlices';
 import Loader from '../../Loader/Loader';
 import cl from './ResultModal.module.scss';
 
-const ResultModal = ({ setOpenResModal, setMakeDied, setSequence, setOpenStartModal}) => {
+const ResultModal = ({ setOpenResModal, setMakeDied, setOpenStartModal}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { shootCount, rating, loading, user } = useSelector(state => state.logic);
@@ -14,7 +14,6 @@ const ResultModal = ({ setOpenResModal, setMakeDied, setSequence, setOpenStartMo
         dispatch(closedResModal());
         setOpenResModal(false);
         setMakeDied(null);
-        setSequence(1);
         setOpenStartModal(true);
     };
 
@@ -28,9 +27,9 @@ const ResultModal = ({ setOpenResModal, setMakeDied, setSequence, setOpenStartMo
 
             <div className={cl.rating_block}>
                 {rating?.map((item, index) => (
-                    <div className={item.id === user.id ? cl.current_user_rating : cl.user_rating} key={item.id}>
+                    <div className={item.email === user.email && item.name===user.name ? cl.current_user_rating : cl.user_rating} key={item.id}>
                         <p>{index+1}.  {item.name}</p>
-                        <p>{item.record[0].record}</p>
+                        <p>{item.record}</p>
                     </div>
                 ))}
             </div>

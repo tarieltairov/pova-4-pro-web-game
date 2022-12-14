@@ -14,9 +14,9 @@ const Header = () => {
                     onClick={() => navigate('/')}
                 >ГЛАВНАЯ</div>
                 <div
-                    className={location.pathname === '/prize' ? cl.active_item : cl.nav_item}
-                    onClick={() => navigate('/prize')}
-                >О ПРИЗЕ</div>
+                    className={location.pathname === '/tehno' ? cl.active_item : cl.nav_item}
+                    onClick={() => navigate('/techno')}
+                >ТЕХНО</div>
                 <div
                     className={location.pathname === '/game' ? cl.active_item : cl.nav_item}
                     onClick={() => navigate('/game')}

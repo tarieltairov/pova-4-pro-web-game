@@ -1,21 +1,53 @@
+import batman from "../assets/images2/targets/batman.png";
+import ironman from "../assets/images2/targets/ironman.png";
+import subziro from "../assets/images2/targets/MC.png";
+import spiderman from "../assets/images2/targets/spiderman.png";
+import superman from "../assets/images2/targets/superman.png";
+import wolverine from "../assets/images2/targets/wolverine.png";
+
+export const targetImages = [
+  {
+    name: "batman",
+    url: batman,
+    image: null
+  },
+  {
+    name: "ironman",
+    url: ironman,
+    image: null
+  },
+  {
+    name: "subziro",
+    url: subziro,
+    image: null
+  },
+  {
+    name: "spiderman",
+    url: spiderman,
+    image: null
+  },
+  {
+    name: "superman",
+    url: superman,
+    image: null
+  },
+  {
+    name: "wolverine",
+    url: wolverine,
+    image: null
+  },
+];
+
 export const randomGlass = () => {
   return Math.floor(Math.random() * (11 - 6) + 6);
 };
 
-// export const clickZone = (e, zone) => {
-//   console.log(e);
-//   let cl = 0;
-//   let image = zone;
-//   const clickX = e.clientX;
-//   const clickY = e.clientY;
-//   var dx = clickX - image.x,
-//     dy = clickY - image.y,
-//     dist = Math.abs(Math.sqrt(dx * dx + dy * dy));
 
-//   if (dist <= image.radius) {
-//     let num = image.radius - dist;
-//     cl = num / 7.5 + "";
-//   }
+export const createTargets = (back) => {
+  for (let i = 0; i < back?.length; i++) {
+    let { url } = targetImages.find((e) => e.name === back[i].target);
+    Object.assign(back[i], { url });
+  }
+  return back;
+};
 
-//   console.log(cl + " x = " + e.clientX + " y = " + e.clientY);
-// };

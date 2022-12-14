@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { endGame } from '../store/slices/logicSlices';
 import cl from '../pages/Game/Game.module.scss';
 
-const CountDown = ({ hours = 0 , minutes = 0, seconds = 0}) => {
+const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
     const dispatch = useDispatch()
     const [[h, m, s], setTime] = useState([hours, minutes, seconds]);
-
-    useEffect(() => {
-        if (h === 0 && m === 0 && s === 0) {
-            dispatch(endGame());
-        }
-    }, [h, m, s, dispatch]);
 
     useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
@@ -34,9 +27,11 @@ const CountDown = ({ hours = 0 , minutes = 0, seconds = 0}) => {
     return (
         <div className={cl.game_time}>
             До окончания игры:
-            {`  ${h.toString().padStart(2, '0')}:${m
-                .toString()
-                .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}
+            <span>
+                {`  ${h.toString().padStart(2, '0')}:${m
+                    .toString()
+                    .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}
+            </span>
         </div>
     );
 };

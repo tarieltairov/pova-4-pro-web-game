@@ -23,7 +23,7 @@ const StartModal = ({ setOpenCreateModal, setOpenStartModal }) => {
                     <div className={cl.block}>
                         <h3>Призы</h3>
                         <hr />
-                        <p>TОП10 игроков получат по POVA 4 Pro! <br/>Итоги будут объвлены 28 декабря</p>
+                        <p>Разыграем телефон Pova 4 Pro из Топ 10 пользователей с максимальным <br/>кол-ом очков!</p>
                     </div>
                 </div>
             </div>

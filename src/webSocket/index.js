@@ -4,6 +4,7 @@ import {
   endGame,
   setShootCount,
   setTargetsFromBack,
+  setUser,
   startedGame,
 } from "../store/slices/logicSlices";
 import { createTargets } from "../utils";
@@ -39,24 +40,19 @@ export default ({ children }) => {
     socket.current.send(message);
   };
 
-  const sendEmail = ({ email, name }) => {
+  const sendEmail = (data) => {
     const message = JSON.stringify({
       event: "email",
-      data: {
-        email,
-        name,
-      },
+      data
     });
     socket.current.send(message);
+    dispatch(setUser(data));
   };
 
   if (!socket.current) {
     socket.current = new WebSocket("ws://game.discoverystudio.xyz/api/ws");
     socket.current.onmessage = (event) => {
       const { data, message, record } = JSON.parse(event.data);
-
-      dispatch(setShootCount(record));
-
       switch (message) {
         case "Start": {
           console.log("started");

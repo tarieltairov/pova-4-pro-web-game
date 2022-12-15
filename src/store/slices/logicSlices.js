@@ -8,7 +8,6 @@ const initialState = {
   game: "notStarted",
   user: {},
   targets: [],
-  isConnect: false,
 };
 
 const logicSlice = createSlice({
@@ -18,27 +17,23 @@ const logicSlice = createSlice({
     startedGame: (state) => {
       state.game = "started";
     },
-    removeTarget: (state, action) => {
-      state.targets = state.targets.filter((_, index) => index !== action.payload);
-    },
     endGame: (state) => {
       state.game = "completed";
     },
+    removeTarget: (state, action) => {
+      state.targets = state.targets.filter((_, index) => index !== action.payload);
+    },
     closedResModal: (state) => {
       state.game = "notStarted";
-      state.shootCount = 100;
+      state.shootCount = 0;
       state.targets = [];
       state.user = {};
-      state.targets = [];
     },
     setShootCount:(state, action)=>{
       state.shootCount = action.payload;
     },
     setTargetsFromBack:(state, action)=>{
       state.targets = action.payload;
-    },
-    setIsConnect:(state, action)=>{
-      state.isConnect = action.payload;
     },
     setUser:(state, action)=>{
       state.user = action.payload;
@@ -68,7 +63,6 @@ export const {
   replenishment,
   setShootCount,
   setTargetsFromBack,
-  setIsConnect,
   setUser
 } = logicSlice.actions;
 export default logicSlice.reducer;

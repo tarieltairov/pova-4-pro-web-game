@@ -12,17 +12,16 @@ import { getRating } from '../../store/actions/logicActions';
 import StartModal from '../../components/Modals/StartModal/StartModal';
 import { WebSocketContext } from '../../webSocket';
 
-const audio3 = new Audio(metalSound);
-
 const Game = () => {
-    const ws = useContext(WebSocketContext);
-
     const dispatch = useDispatch();
     const { shootCount, game, user, targets } = useSelector(state => state.logic);
     const [makeDied, setMakeDied] = useState(null);
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const [openResModal, setOpenResModal] = useState(false);
     const [openStartModal, setOpenStartModal] = useState(true);
+    const ws = useContext(WebSocketContext);
+
+    console.log('targets', targets);
 
     useEffect(() => {
         if (game === 'completed') {
@@ -39,6 +38,7 @@ const Game = () => {
     };
 
     const targetHitFireSound = () => {
+        const audio3 = new Audio(metalSound);
         audio3.play();
     };
 
@@ -49,13 +49,14 @@ const Game = () => {
         const currentTargetIndex = Number(starter.id);
         frame.style.display = "block";
 
+        const currentTarget = targets.filter((_, index) => index === currentTargetIndex)[0];
+        const notCurrentTarget = targets.filter((_, index) => index !== currentTargetIndex)[0];
+
         if (!isNaN(currentTargetIndex)) {
-            const currentTarget = targets.filter((_, index) => index === currentTargetIndex)[0]
-            
             let forShootTarget = {
                 target: currentTarget?.target,
                 enemy: currentTarget?.enemy,
-                position: currentTarget?.position, //только тогда когда 2 мишени
+                position: notCurrentTarget?.position, //только тогда когда 2 мишени
             };
             if (targets.length === 1) {
                 delete forShootTarget.position;

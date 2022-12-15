@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import cl from '../pages/Game/Game.module.scss';
 
 const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
-    const dispatch = useDispatch()
     const [[h, m, s], setTime] = useState([hours, minutes, seconds]);
 
     useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
-    }, [dispatch]);
+    }, []);
 
     const tick = () => {
         setTime((prev) => {
@@ -22,7 +20,6 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
             }
         });
     };
-
 
     return (
         <div className={cl.game_time}>

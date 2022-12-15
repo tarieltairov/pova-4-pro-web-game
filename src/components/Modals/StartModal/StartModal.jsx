@@ -1,8 +1,8 @@
 import React from 'react';
 import cl from './StartModal.module.scss';
 
-const StartModal = ({ setOpenCreateModal, setOpenStartModal }) => {
-
+const StartModal = ({ setOpenCreateModal, setOpenStartModal}) => {
+    
     return (
         <div className={cl.modal_container}>
             <div className={cl.modal}>
@@ -23,7 +23,7 @@ const StartModal = ({ setOpenCreateModal, setOpenStartModal }) => {
                     <div className={cl.block}>
                         <h3>Призы</h3>
                         <hr />
-                        <p>Разыграем телефон Pova 4 Pro из Топ 10 пользователей с максимальным <br/>кол-ом очков!</p>
+                        <p>Разыграем телефон Pova 4 Pro из Топ 10 пользователей с максимальным <br/>количеством очков!</p>
                     </div>
                 </div>
             </div>

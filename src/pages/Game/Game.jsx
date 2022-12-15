@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import cl from './Game.module.scss'
-import classNames from 'classnames';
-import fireSound from '../../assets/audio/fire.mp3'
-import metalSound from '../../assets/audio/metal.mp3'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeTarget } from '../../store/slices/logicSlices';
+import { getRating } from '../../store/actions/logicActions';
+import { WebSocketContext } from '../../webSocket';
+import { toast } from 'react-toastify';
+import fireSound from '../../assets/audio/fire.mp3'
+import metalSound from '../../assets/audio/metal.mp3'
 import CreateUserModal from '../../components/Modals/CreateUserModal/CreateUserModal';
 import ResultModal from '../../components/Modals/ResultModal/ResultModal';
-import CountDown from '../../components/CountDown';
-import { getRating } from '../../store/actions/logicActions';
 import StartModal from '../../components/Modals/StartModal/StartModal';
-import { WebSocketContext } from '../../webSocket';
+import CountDown from '../../components/CountDown';
+import cl from './Game.module.scss';
+import classNames from 'classnames';
 
 const Game = () => {
     const dispatch = useDispatch();
@@ -19,9 +20,8 @@ const Game = () => {
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const [openResModal, setOpenResModal] = useState(false);
     const [openStartModal, setOpenStartModal] = useState(true);
+    const [isMobile, setIsMobile] = useState(false)
     const ws = useContext(WebSocketContext);
-
-    console.log('targets', targets);
 
     useEffect(() => {
         if (game === 'completed') {
@@ -31,6 +31,18 @@ const Game = () => {
         };
     }, [game, dispatch]);
 
+    useEffect(() => {
+        setIsMobile(navigator.userAgentData.mobile);
+    }, [navigator]);
+
+    useEffect(() => {
+        if (isMobile && game === "started") {
+            toast.success('Поверните телефон');
+        }
+        if(isMobile && game === "completed"){
+            toast.success('Поверните телефон обратно');
+        }
+    }, [isMobile, game]);
 
     const playFireSound = () => {
         const audio2 = new Audio(fireSound);
@@ -61,55 +73,57 @@ const Game = () => {
             if (targets.length === 1) {
                 delete forShootTarget.position;
             }
-            ws.sendShootTarget(forShootTarget)
+            ws.sendShootTarget(forShootTarget);
             targetHitFireSound();
-            dispatch(removeTarget(currentTargetIndex))
+            dispatch(removeTarget(currentTargetIndex));
         } else {
             playFireSound();
         }
-
     };
-
 
     return (
         <div id='background' className={cl.game_page}>
 
             {game === "started" &&
-                <>
+            <>
+                <div className={isMobile ? cl.mobileTablets:  cl.tablets}>
                     <div className={cl.glasses}>Очки: <span>{shootCount || 0}</span></div>
-                    <div className={cl.user}>Вы: <span>{user.name || 'user'}</span></div>
-
                     <CountDown minutes={1} />
+                    <div className={cl.user}>Вы: <span>{user.name || 'user'}</span></div>
+                </div>
 
-                    {targets?.map((item, index) => (
-                        <img
-                            id={index}
-                            key={index}
-                            src={item.url}
-                            className={
-                                classNames(item.enemy === true ?
-                                    cl.enemy_target : cl.target,
-                                    cl[item.position], index === makeDied && cl.die)
-                            }
-                            alt="target"
-                        />
-                    ))}
-                </>
-            }
+                {targets?.map((item, index) => (
+                    <img
+                        id={index}
+                        key={index}
+                        src={item.url}
+                        className={
+                            classNames(item.enemy === true ?
+                                cl.enemy_target : cl.target,
+                                cl[item.position], index === makeDied && cl.die)
+                        }
+                        alt="target"
+                    />
+                ))}
+            </>
+           } 
 
             {openStartModal && game === 'notStarted' &&
                 <StartModal
+                    isMobile={isMobile}
                     setOpenCreateModal={setOpenCreateModal}
                     setOpenStartModal={setOpenStartModal}
                 />}
 
             {openCreateModal &&
                 <CreateUserModal
+                    isMobile={isMobile}
                     setOpenCreateModal={setOpenCreateModal}
                 />}
 
             {openResModal &&
                 <ResultModal
+                    isMobile={isMobile}
                     setOpenResModal={setOpenResModal}
                     setMakeDied={setMakeDied}
                     setOpenStartModal={setOpenStartModal}

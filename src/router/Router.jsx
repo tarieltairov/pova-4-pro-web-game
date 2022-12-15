@@ -4,6 +4,7 @@ import Header from '../components/Header/Header';
 import Game from '../pages/Game/Game';
 import Home from '../pages/Home/Home';
 import Prize from '../pages/Prize/Prize';
+
 const Router = () => {
     return (
         <BrowserRouter>

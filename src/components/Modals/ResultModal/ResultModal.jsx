@@ -5,10 +5,10 @@ import { closedResModal } from '../../../store/slices/logicSlices';
 import Loader from '../../Loader/Loader';
 import cl from './ResultModal.module.scss';
 
-const ResultModal = ({ setOpenResModal, setMakeDied, setOpenStartModal}) => {
+const ResultModal = ({ setOpenResModal, setMakeDied, setOpenStartModal, isMobile}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { shootCount, rating, loading, user } = useSelector(state => state.logic);
+    const { shootCount, rating, loading, user, game} = useSelector(state => state.logic);
 
     const closeModal = () => {
         dispatch(closedResModal());
@@ -18,7 +18,7 @@ const ResultModal = ({ setOpenResModal, setMakeDied, setOpenStartModal}) => {
     };
 
     return (
-        <div className={cl.modal}>
+        <div className={isMobile && game === "completed"? cl.forMobile : cl.modal}>
             {loading && <Loader />}
             <h4>Игра завершена!</h4>
 

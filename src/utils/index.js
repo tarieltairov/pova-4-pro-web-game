@@ -1,9 +1,9 @@
-import batman from "../assets/images2/targets/batman.png";
-import ironman from "../assets/images2/targets/ironman.png";
-import subziro from "../assets/images2/targets/MC.png";
-import spiderman from "../assets/images2/targets/spiderman.png";
-import superman from "../assets/images2/targets/superman.png";
-import wolverine from "../assets/images2/targets/wolverine.png";
+import batman from "../assets/images4/targets/target1.png";
+import ironman from "../assets/images4/targets/target2.png";
+import subziro from "../assets/images4/targets/target3.png";
+import spiderman from "../assets/images4/targets/target4.png";
+import superman from "../assets/images4/targets/target5.png";
+import wolverine from "../assets/images4/targets/target1.png";
 
 export const targetImages = [
   {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
+import povoPro from '../../../assets/images/Pova4Pro (1)-min.jpg';
+import povoPro2 from '../../../assets/images/Pova4Pro (2)-min.jpg';
+import povoPro3 from '../../../assets/images/Pova4Pro (3)-min.jpg';
+import povoPro4 from '../../../assets/images/Pova4Pro (4) (1)-min.jpg';
+import cl from "../Home.module.scss";
 import 'swiper/css';
 import 'swiper/css/bundle';
-import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
-import cl from "../Home.module.scss";
-import povoPro from '../../../assets/images/Pova4Pro (1)-min.jpg'
-import povoPro2 from '../../../assets/images/Pova4Pro (2)-min.jpg'
-import povoPro3 from '../../../assets/images/Pova4Pro (3)-min.jpg'
-import povoPro4 from '../../../assets/images/Pova4Pro (4) (1)-min.jpg'
 
 const HomeCameraCarusel = () => {
     return (

@@ -54,13 +54,10 @@ const logicSlice = createSlice({
 });
 
 export const {
-  emptyFire,
-  allyFire,
   startedGame,
   removeTarget,
   endGame,
   closedResModal,
-  replenishment,
   setShootCount,
   setTargetsFromBack,
   setUser

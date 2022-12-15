@@ -23,11 +23,9 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 
     return (
         <div className={cl.game_time}>
-            До окончания игры:
+            До окончания игры:<br />
             <span>
-                {`  ${h.toString().padStart(2, '0')}:${m
-                    .toString()
-                    .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}
+                {`  ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`}
             </span>
         </div>
     );

@@ -9,7 +9,7 @@ import {
 } from "../store/slices/logicSlices";
 import { createTargets } from "../utils";
 
-const WebSocketContext = createContext(11);
+const WebSocketContext = createContext(null);
 
 export { WebSocketContext };
 
@@ -33,13 +33,6 @@ export default ({ children }) => {
     socket.current.send(message);
   };
 
-  const clearTarget = () => {
-    const message = JSON.stringify({
-      event: "record",
-    });
-    socket.current.send(message);
-  };
-
   const sendEmail = (data) => {
     const message = JSON.stringify({
       event: "email",
@@ -55,7 +48,6 @@ export default ({ children }) => {
       const { data, message, record } = JSON.parse(event.data);
       switch (message) {
         case "Start": {
-          console.log("started");
           dispatch(startedGame());
           break;
         }
@@ -67,7 +59,6 @@ export default ({ children }) => {
         }
         case "End": {
           dispatch(endGame());
-          console.log("end");
           break;
         }
         default:
@@ -78,7 +69,6 @@ export default ({ children }) => {
       socket: socket.current,
       sendShootTarget,
       startGameEvent,
-      clearTarget,
       sendEmail,
     };
   }

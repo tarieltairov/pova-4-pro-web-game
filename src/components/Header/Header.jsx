@@ -1,6 +1,6 @@
 import React from 'react';
-import cl from './Header.module.scss';
 import { useLocation, useNavigate } from "react-router-dom";
+import cl from './Header.module.scss';
 
 const Header = () => {
     const location = useLocation();

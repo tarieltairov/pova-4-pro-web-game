@@ -1,6 +1,6 @@
 import React from 'react';
-import background from '../../../assets/images/backgrounds/background.jpg'
-import cl from '../Home.module.scss'
+import background from '../../../assets/images/backgrounds/background.jpg';
+import cl from '../Home.module.scss';
 
 const HomeMain = () => {
     return (

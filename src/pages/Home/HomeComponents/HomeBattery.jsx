@@ -1,19 +1,17 @@
 import React from 'react';
-import cl from '../Home.module.scss'
-import proz from '../../../assets/images/main/poth.png'
-import ozy from '../../../assets/images/main/ozy.png'
-import battery from '../../../assets/images/main/battery.png'
-import gzz from '../../../assets/images/main/ggz.png'
-import zvyk from '../../../assets/images/main/zvyk.png'
-import vibro from '../../../assets/images/main/vibro.png'
-import ohlaz from '../../../assets/images/main/ohlaz.png'
-import steklo from '../../../assets/images/main/steklo.png'
+import cl from '../Home.module.scss';
+import proz from '../../../assets/images/main/poth.png';
+import ozy from '../../../assets/images/main/ozy.png';
+import battery from '../../../assets/images/main/battery.png';
+import gzz from '../../../assets/images/main/ggz.png';
+import zvyk from '../../../assets/images/main/zvyk.png';
+import vibro from '../../../assets/images/main/vibro.png';
+import ohlaz from '../../../assets/images/main/ohlaz.png';
+import steklo from '../../../assets/images/main/steklo.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 import 'swiper/css';
 import 'swiper/css/bundle';
-
-
-import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 
 const HomeBattery = () => {
 
@@ -27,8 +25,6 @@ const HomeBattery = () => {
                     navigation
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
                 >
                     <SwiperSlide>
                         <div className={cl.battery}>

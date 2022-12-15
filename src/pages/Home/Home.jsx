@@ -1,5 +1,4 @@
 import React from 'react';
-import cl from './Home.module.scss'
 import HomeMain from "./HomeComponents/HomeMain";
 import HomeTable from "./HomeComponents/HomeTable";
 import HomeBattery from "./HomeComponents/HomeBattery";
@@ -10,6 +9,7 @@ import HomeVideo from './HomeComponents/HomeVideo';
 import HomeSecBat from './HomeComponents/HomeSecBat';
 import HomeTerm from './HomeComponents/HomeTerm';
 import HomePhoneDesign from './HomeComponents/HomePhoneDesign';
+import cl from './Home.module.scss'
 
 const Home = () => {
     return (

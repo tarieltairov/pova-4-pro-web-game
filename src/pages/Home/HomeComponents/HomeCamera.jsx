@@ -1,5 +1,6 @@
 import React from 'react';
-import background from '../../../assets/images/phone.jpg'
+import background from '../../../assets/images/phone.jpg';
+
 const HomeCamera = () => {
     return (
         <div style={{marginBottom: '200px', marginTop: '200px', padding: '20px'}}>

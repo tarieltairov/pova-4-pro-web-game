@@ -5,6 +5,11 @@ import spiderman from "../assets/images4/targets/target4.png";
 import superman from "../assets/images4/targets/target5.png";
 import wolverine from "../assets/images4/targets/target1.png";
 
+const mobile = require('is-mobile');
+
+
+export const isMobileDevice = mobile();
+
 export const targetImages = [
   {
     name: "batman",

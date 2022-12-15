@@ -12,6 +12,7 @@ import StartModal from '../../components/Modals/StartModal/StartModal';
 import CountDown from '../../components/CountDown';
 import cl from './Game.module.scss';
 import classNames from 'classnames';
+import { isMobileDevice } from '../../utils';
 
 const Game = () => {
     const dispatch = useDispatch();
@@ -31,11 +32,13 @@ const Game = () => {
         };
     }, [game, dispatch]);
 
-    useEffect(() => {
-        setIsMobile(navigator?.userAgentData?.mobile);
-    }, []);
 
-    console.log('mobile',  navigator?.userAgentData?.mobile)
+    useEffect(() => {
+        if(isMobileDevice){
+            setIsMobile(isMobileDevice);
+        }
+    }, [isMobileDevice]);
+
 
     useEffect(() => {
         if (isMobile && game === "started") {

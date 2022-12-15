@@ -35,6 +35,8 @@ const Game = () => {
         setIsMobile(navigator?.userAgentData?.mobile);
     }, []);
 
+    console.log('mobile',  navigator?.userAgentData?.mobile)
+
     useEffect(() => {
         if (isMobile && game === "started") {
             toast.success('Поверните телефон');

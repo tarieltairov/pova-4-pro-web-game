@@ -32,8 +32,8 @@ const Game = () => {
     }, [game, dispatch]);
 
     useEffect(() => {
-        setIsMobile(navigator.userAgentData.mobile);
-    }, [navigator]);
+        setIsMobile(navigator?.userAgentData?.mobile);
+    }, []);
 
     useEffect(() => {
         if (isMobile && game === "started") {

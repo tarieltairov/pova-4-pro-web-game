@@ -167,14 +167,14 @@
     // ------- target is enemy ? -------------
     .target {
         animation: appearancee 2s forwards;
-        box-shadow: 0px 0px 12px rgb(43, 243, 53);
+        box-shadow: 0px 0px 12px rgb(233, 37, 37);
         border-radius: 10px;
     }
 
     .enemy_target {
         cursor: url('../../assets/images/aims/002--1.png'), auto;
         animation: appearancee 2s forwards;
-        box-shadow: 0px 0px 12px rgb(233, 37, 37);
+        box-shadow: 0px 0px 12px rgb(43, 243, 53);
         border-radius: 10px;
     }
 

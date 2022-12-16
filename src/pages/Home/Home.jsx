@@ -9,7 +9,7 @@ import HomeVideo from './HomeComponents/HomeVideo';
 import HomeSecBat from './HomeComponents/HomeSecBat';
 import HomeTerm from './HomeComponents/HomeTerm';
 import HomePhoneDesign from './HomeComponents/HomePhoneDesign';
-import cl from './Home.module.scss'
+import cl from './Home.module.scss';
 
 const Home = () => {
     return (

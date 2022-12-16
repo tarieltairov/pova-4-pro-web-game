@@ -28,7 +28,7 @@ export default ({ children }) => {
   const sendShootTarget = (data) => {
     const message = JSON.stringify({
       event: "record",
-      data
+      data,
     });
     socket.current.send(message);
   };
@@ -36,42 +36,57 @@ export default ({ children }) => {
   const sendEmail = (data) => {
     const message = JSON.stringify({
       event: "email",
-      data
+      data,
     });
     socket.current.send(message);
     dispatch(setUser(data));
   };
 
-  if (!socket.current) {
-    socket.current = new WebSocket("ws://game.discoverystudio.xyz/api/ws");
-    socket.current.onmessage = (event) => {
-      const { data, message, record } = JSON.parse(event.data);
-      switch (message) {
-        case "Start": {
-          dispatch(startedGame());
-          break;
+  const newGameConnect = (userData) => {
+    if (!socket.current) {
+      socket.current = new WebSocket("ws://game.discoverystudio.xyz/api/ws");
+
+      socket.current.onopen = () => {
+        console.log('socket open');
+        sendEmail(userData);
+        startGameEvent();
+      };
+      socket.current.onmessage = (event) => {
+        const { data, message, record } = JSON.parse(event.data);
+        switch (message) {
+          case "Start": {
+            dispatch(startedGame());
+            break;
+          }
+          case "targets": {
+            const newTargets = createTargets(data);
+            dispatch(setTargetsFromBack(newTargets));
+            dispatch(setShootCount(record));
+            break;
+          }
+          case "End": {
+            dispatch(endGame());
+            socket.current.close();
+            socket.current = null;
+            break;
+          }
+          default:
+            break;
         }
-        case "targets": {
-          const newTargets = createTargets(data);
-          dispatch(setTargetsFromBack(newTargets));
-          dispatch(setShootCount(record));
-          break;
-        }
-        case "End": {
-          dispatch(endGame());
-          break;
-        }
-        default:
-          break;
+      };
+
+      socket.current.onclose=()=>{
+        console.log('socket closed');
       }
-    };
-    ws.current = {
-      socket: socket.current,
-      sendShootTarget,
-      startGameEvent,
-      sendEmail,
-    };
-  }
+    }
+  };
+  ws.current = {
+    socket: socket.current,
+    sendShootTarget,
+    startGameEvent,
+    sendEmail,
+    newGameConnect,
+  };
 
   return (
     <WebSocketContext.Provider value={ws.current}>

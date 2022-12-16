@@ -44,6 +44,9 @@
 
 .video_flex {
   margin-bottom: 100px;
+  @media(max-width:425px){
+    padding-top: 50px;
+  }
 }
 
 .video {

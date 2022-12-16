@@ -18,8 +18,7 @@ const CreateUserModal = ({ setOpenCreateModal }) => {
     });
 
     const createAndStart = (data) => {
-        ws.sendEmail(data);
-        ws.startGameEvent();
+        ws.newGameConnect(data);
         setOpenCreateModal(false);
     };
 

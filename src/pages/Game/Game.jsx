@@ -4,8 +4,8 @@ import { removeTarget } from '../../store/slices/logicSlices';
 import { getRating } from '../../store/actions/logicActions';
 import { WebSocketContext } from '../../webSocket';
 import { toast } from 'react-toastify';
-import fireSound from '../../assets/audio/fire.mp3'
-import metalSound from '../../assets/audio/metal.mp3'
+import fireSound from '../../assets/audio/fire.mp3';
+import metalSound from '../../assets/audio/metal.mp3';
 import CreateUserModal from '../../components/Modals/CreateUserModal/CreateUserModal';
 import ResultModal from '../../components/Modals/ResultModal/ResultModal';
 import StartModal from '../../components/Modals/StartModal/StartModal';
@@ -21,7 +21,7 @@ const Game = () => {
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const [openResModal, setOpenResModal] = useState(false);
     const [openStartModal, setOpenStartModal] = useState(true);
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(false);
     const ws = useContext(WebSocketContext);
 
     useEffect(() => {
@@ -31,7 +31,6 @@ const Game = () => {
             });
         };
     }, [game, dispatch]);
-
 
     useEffect(() => {
         if(isMobileDevice){
@@ -93,7 +92,7 @@ const Game = () => {
             <>
                 <div className={isMobile ? cl.mobileTablets:  cl.tablets}>
                     <div className={cl.glasses}>Очки: <span>{shootCount || 0}</span></div>
-                    <CountDown minutes={1} />
+                    <CountDown />
                     <div className={cl.user}>Вы: <span>{user.name || 'user'}</span></div>
                 </div>
 

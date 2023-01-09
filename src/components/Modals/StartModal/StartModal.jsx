@@ -16,7 +16,7 @@ const StartModal = ({ setOpenCreateModal, setOpenStartModal}) => {
                         <h3>Правила</h3>
                         <hr />
                         <p>1. Набирай очки</p>
-                        <p>2. Попади в TОП10 игроков</p>
+                        <p>2. Попади в TОП 10 игроков</p>
                         <p>3. Делись результатами в социальной сети VK</p>
                     </div>
                     <div className={cl.block}>

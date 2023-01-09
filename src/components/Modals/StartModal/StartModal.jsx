@@ -17,13 +17,12 @@ const StartModal = ({ setOpenCreateModal, setOpenStartModal}) => {
                         <hr />
                         <p>1. Набирай очки</p>
                         <p>2. Попади в TОП10 игроков</p>
-                        <p>3. Делись результатом в соц.сетях</p>
-                        <p>4. Выиграй POVA 4 Pro!</p>
+                        <p>3. Делись результатами в социальной сети VK</p>
                     </div>
                     <div className={cl.block}>
                         <h3>Призы</h3>
                         <hr />
-                        <p>Разыграем телефон Pova 4 Pro из Топ 10 пользователей с максимальным <br/>количеством очков!</p>
+                        <p>Главный приз телефон TECNO POVA 4 PRO</p>
                     </div>
                 </div>
             </div>

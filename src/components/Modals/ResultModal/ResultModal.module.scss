@@ -88,6 +88,7 @@
         }
 
         .redirect_btn {
+            margin-right: 10px;
             background-color: rgba(8, 111, 230);
 
             &:hover {
@@ -103,7 +104,23 @@
             }
         }
     }
-
+    .download_btn{
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 20px;
+        color: white;
+        font-weight: 500;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        background-color: green;
+        &:hover {
+            background-color: rgb(12, 170, 12);
+            transition: 0.5s;
+        }
+    }
 }
 
 
@@ -212,4 +229,21 @@
         }
     }
 
+    .download_btn{
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 20px;
+        color: white;
+        font-weight: 500;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        background-color: red;
+        &:hover {
+            background-color: rgb(12, 170, 12);
+            transition: 0.5s;
+        }
+    }
 }

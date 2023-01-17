@@ -13,10 +13,11 @@ import CountDown from '../../components/CountDown';
 import cl from './Game.module.scss';
 import classNames from 'classnames';
 import { isMobileDevice } from '../../utils';
+import ShareModal from '../../components/Modals/shareModal/ShareModal';
 
 const Game = () => {
     const dispatch = useDispatch();
-    const { shootCount, game, user, targets } = useSelector(state => state.logic);
+    const { shootCount, game, user, targets, shareModal} = useSelector(state => state.logic);
     const [makeDied, setMakeDied] = useState(null);
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const [openResModal, setOpenResModal] = useState(false);
@@ -33,7 +34,7 @@ const Game = () => {
     }, [game, dispatch]);
 
     useEffect(() => {
-        if(isMobileDevice){
+        if (isMobileDevice) {
             setIsMobile(isMobileDevice);
         }
     }, [isMobileDevice]);
@@ -43,7 +44,7 @@ const Game = () => {
         if (isMobile && game === "started") {
             toast.success('Поверните телефон');
         }
-        if(isMobile && game === "completed"){
+        if (isMobile && game === "completed") {
             toast.success('Поверните телефон обратно');
         }
     }, [isMobile, game]);
@@ -89,28 +90,28 @@ const Game = () => {
         <div id='background' className={cl.game_page}>
 
             {game === "started" &&
-            <>
-                <div className={isMobile ? cl.mobileTablets:  cl.tablets}>
-                    <div className={cl.glasses}>Очки: <span>{shootCount || 0}</span></div>
-                    <CountDown />
-                    <div className={cl.user}>Вы: <span>{user.name || 'user'}</span></div>
-                </div>
+                <>
+                    <div className={isMobile ? cl.mobileTablets : cl.tablets}>
+                        <div className={cl.glasses}>Очки: <span>{shootCount || 0}</span></div>
+                        <CountDown />
+                        <div className={cl.user}>Вы: <span>{user.name || 'user'}</span></div>
+                    </div>
 
-                {targets?.map((item, index) => (
-                    <img
-                        id={index}
-                        key={index}
-                        src={item.url}
-                        className={
-                            classNames(item.enemy === true ?
-                                cl.enemy_target : cl.target,
-                                cl[item.position], index === makeDied && cl.die)
-                        }
-                        alt="target"
-                    />
-                ))}
-            </>
-           } 
+                    {targets?.map((item, index) => (
+                        <img
+                            id={index}
+                            key={index}
+                            src={item.url}
+                            className={
+                                classNames(item.enemy === true ?
+                                    cl.enemy_target : cl.target,
+                                    cl[item.position], index === makeDied && cl.die)
+                            }
+                            alt="target"
+                        />
+                    ))}
+                </>
+            }
 
             {openStartModal && game === 'notStarted' &&
                 <StartModal
@@ -133,6 +134,7 @@ const Game = () => {
                     setOpenStartModal={setOpenStartModal}
                 />}
 
+            {shareModal && <ShareModal />}
             {game === 'started' && <div id='frame' className={cl.frame} onClick={(e) => getTarget(e)}></div>}
         </div>
     );

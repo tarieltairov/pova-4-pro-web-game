@@ -10,16 +10,16 @@ const Header = () => {
         <div className={cl.header_container}>
             <nav>
                 <div
-                    className={location.pathname === '/' ? cl.active_item : cl.nav_item}
-                    onClick={() => navigate('/')}
+                    className={location.pathname === '/tecno' ? cl.active_item : cl.nav_item}
+                    onClick={() => navigate('/tecno')}
                 >ГЛАВНАЯ</div>
                 <div
-                    className={location.pathname === '/tehno' ? cl.active_item : cl.nav_item}
-                    onClick={() => navigate('/tecno')}
+                    className={location.pathname === '/tecno/info' ? cl.active_item : cl.nav_item}
+                    onClick={() => navigate('/tecno/info')}
                 >TECNO</div>
                 <div
-                    className={location.pathname === '/game' ? cl.active_item : cl.nav_item}
-                    onClick={() => navigate('/game')}
+                    className={location.pathname === '/tecno/game' ? cl.active_item : cl.nav_item}
+                    onClick={() => navigate('/tecno/game')}
                 >ИГРАТЬ</div>
                 
             </nav>

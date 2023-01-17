@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getRating } from "../actions/logicActions";
+import { getRating, sendScrinResult } from "../actions/logicActions";
  
 const initialState = {
   loading: false,
@@ -8,12 +8,20 @@ const initialState = {
   game: "notStarted",
   user: {},
   targets: [],
+  shareModal: false,
+  shareData: null,
 };
 
 const logicSlice = createSlice({
   name: "logic",
   initialState,
   reducers: {
+    setShareData:(state, action)=>{
+      state.shareData = action.payload
+    },
+    setShareModal:(state, action)=>{
+      state.shareModal = action.payload;
+    },
     startedGame: (state) => {
       state.game = "started";
     },
@@ -50,16 +58,29 @@ const logicSlice = createSlice({
     builder.addCase(getRating.rejected, (state) => {
       state.loading = false;
     });
+    builder.addCase(sendScrinResult.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(sendScrinResult.fulfilled, (state, action) => {
+      state.loading = false;
+      state.shareData = action.payload
+    });
+    builder.addCase(sendScrinResult.rejected, (state) => {
+      state.loading = false;
+    });
+    
   },
 });
 
 export const {
+  setShareData,
   startedGame,
   removeTarget,
   endGame,
   closedResModal,
   setShootCount,
   setTargetsFromBack,
-  setUser
+  setUser,
+  setShareModal
 } = logicSlice.actions;
 export default logicSlice.reducer;

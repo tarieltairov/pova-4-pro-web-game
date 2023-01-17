@@ -44,7 +44,7 @@ export default ({ children }) => {
 
   const newGameConnect = (userData) => {
     if (!socket.current) {
-      socket.current = new WebSocket("ws://game.discoverystudio.xyz/api/ws");
+      socket.current = new WebSocket("wss://game.discoverystudio.xyz/api/ws");
 
       socket.current.onopen = () => {
         console.log('socket open');

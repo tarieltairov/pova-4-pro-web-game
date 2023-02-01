@@ -67,7 +67,7 @@ const ResultModal = ({ setOpenResModal, setMakeDied, setOpenStartModal, isMobile
 
             <div className={cl.rating_block} id="scrin">
                 {rating?.map((item, index) => (
-                    <div className={(item.email === user.email) && (item.name === user.name) ? cl.current_user_rating : cl.user_rating} key={item.id}>
+                    <div className={(item.email === user.email) && (item.name === user.name) ? cl.current_user_rating : cl.user_rating} key={index}>
                         <p>{index + 1}.  {item.name}</p>
                         <p>{item.record}</p>
                     </div>
